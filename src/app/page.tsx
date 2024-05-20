@@ -1,6 +1,6 @@
 "use client";
 
-import "./../app/app.css";
+import "./app.css";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 
@@ -16,7 +16,9 @@ export default function App() {
 				>
 					<div className="flex lg:flex-1">
 						<a href="#" className="-m-1.5 p-1.5">
-							<span className="">Spot Me</span>
+							<span className="text-2xl font-extrabold tracking-wide">
+								spot me.
+							</span>
 						</a>
 					</div>
 					<div className="flex lg:hidden">
@@ -32,7 +34,7 @@ export default function App() {
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 						<a
 							href="/dashboard"
-							className="text-sm font-semibold leading-6 text-gray-900"
+							className="text-md font-semibold leading-6 text-gray-900"
 						>
 							Log in <span aria-hidden="true">&rarr;</span>
 						</a>
@@ -47,7 +49,9 @@ export default function App() {
 					<Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 						<div className="flex items-center justify-between">
 							<a href="#" className="-m-1.5 p-1.5">
-								<span className="">Spot Me</span>
+								<span className="text-2xl font-extrabold tracking-wide">
+									spot me.
+								</span>
 							</a>
 							<button
 								type="button"

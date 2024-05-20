@@ -13,6 +13,7 @@ const schema = a.schema({
 			expenseName: a.string(),
 			expenseAmount: a.float(),
 			month: a.string(),
+			year: a.string(),
 		})
 		.authorization((allow) => [allow.owner()]),
 });
