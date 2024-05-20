@@ -16,28 +16,33 @@ export async function createExpense(formData: FormData) {
 }
 
 export async function createSavingStrategy(formData: FormData) {
-	let savingPercentage;
-	const savingModel = formData.get("savingsModel") as string;
-	const monthlyIncome = parseFloat(formData.get("monthlyIncome") as string);
+	try {
+		let savingPercentage;
+		const savingModel = formData.get("savingsModel") as string;
+		const monthlyIncome = parseFloat(formData.get("monthlyIncome") as string);
 
-	switch (savingModel) {
-		case "FIRE":
-			savingPercentage = 0.25;
-			break;
-		case "30/60":
-			savingPercentage = 0.3;
-			break;
-		default:
-			throw "Invalid saving model";
+		switch (savingModel) {
+			case "FIRE":
+				savingPercentage = 0.25;
+				break;
+			case "30/60":
+				savingPercentage = 0.3;
+				break;
+			default:
+				throw "Invalid saving model";
+		}
+
+		const { data } = await cookiesClient.models.SavingStrategy.create({
+			savingsModel: savingModel,
+			monthlyIncome: parseFloat(formData.get("monthlyIncome") as string),
+			amountToSave: monthlyIncome * savingPercentage,
+		});
+
+		console.log("Created saving strategy", data);
+		revalidatePath("/dashboard");
+		redirect("/dashboard");
+	} catch (error) {
+		console.error("Error creating saving strategy", error);
+		redirect("/login");
 	}
-
-	const { data } = await cookiesClient.models.SavingStrategy.create({
-		savingsModel: savingModel,
-		monthlyIncome: parseFloat(formData.get("monthlyIncome") as string),
-		amountToSave: monthlyIncome * savingPercentage,
-	});
-
-	console.log("Created saving strategy", data);
-	revalidatePath("/dashboard");
-	redirect("/dashboard");
 }
