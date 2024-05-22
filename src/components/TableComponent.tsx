@@ -1,6 +1,6 @@
 "use client";
 
-import { ClockIcon } from "@heroicons/react/16/solid";
+import { CreditCardIcon } from "@heroicons/react/16/solid";
 import {
 	Card,
 	Table,
@@ -14,12 +14,15 @@ import {
 	Badge,
 } from "@tremor/react";
 import type { Schema } from "@/amplify/data/resource";
+import { dataFormatter } from "../utils/utils";
+
+type Expenses = Schema["Expenses"]["type"];
 
 const TableComponent = ({
 	expenses,
 	month,
 }: {
-	expenses: Schema["Expenses"][];
+	expenses: Expenses[];
 	month: string;
 }) => {
 	return (
@@ -35,14 +38,14 @@ const TableComponent = ({
 				</TableHead>
 				<TableBody>
 					{expenses.map((expense) => (
-						<TableRow key={expense.type.expenseName}>
-							<TableCell>{expense.type.expenseName}</TableCell>
+						<TableRow key={expense.expenseName}>
+							<TableCell>{expense.expenseName}</TableCell>
 							<TableCell>
-								<Text>{expense.type.expenseAmount}</Text>
+								<Text>{dataFormatter(expense.expenseAmount)}</Text>
 							</TableCell>
 							<TableCell>
-								<Badge color="emerald" icon={ClockIcon}>
-									{expense.type.expenseCategory}
+								<Badge color="red" icon={CreditCardIcon}>
+									{expense.expenseCategory}
 								</Badge>
 							</TableCell>
 						</TableRow>

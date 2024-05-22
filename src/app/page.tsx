@@ -34,7 +34,7 @@ export default function App() {
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 						<a
 							href="/dashboard"
-							className="text-md font-semibold leading-6 text-gray-300"
+							className="text-md font-semibold leading-6 text-white hover:text-gray-300"
 						>
 							Log in <span aria-hidden="true">&rarr;</span>
 						</a>
@@ -93,15 +93,15 @@ export default function App() {
 				</div>
 				<div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
 					<div className="hidden sm:mb-8 sm:flex sm:justify-center">
-						<div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-100 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
+						<div className="relative rounded-full px-3 py-1 text-sm leading-6 text-white ring-1 ring-gray-100/30 hover:ring-gray-100/60">
 							Where you go to manage your money.
 						</div>
 					</div>
 					<div className="text-center">
-						<h1 className="text-4xl font-bold tracking-tight text-gray-50 sm:text-6xl">
+						<h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
 							Personal Finance Tracking Made Easy
 						</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-100">
+						<p className="mt-6 text-lg leading-8 text-gray-50">
 							Budgeting and tracking your expenses has never been easier. With
 							Spot Me, you can easily manage your finances and get a clear view
 							of your spending habits.

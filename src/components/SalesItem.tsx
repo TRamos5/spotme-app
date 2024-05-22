@@ -26,52 +26,37 @@ import {
 import { dataFormatter } from "../utils/utils";
 import type { Schema } from "@/amplify/data/resource";
 
-const stocks = [
-	{
-		name: "Off Running AG",
-		value: 10456,
-		performance: "6.1%",
-		deltaType: "increase",
-	},
-	{
-		name: "Not Normal Inc.",
-		value: 5789,
-		performance: "1.2%",
-		deltaType: "moderateDecrease",
-	},
-	{
-		name: "Logibling Inc.",
-		value: 4367,
-		performance: "2.3%",
-		deltaType: "moderateIncrease",
-	},
-	{
-		name: "Raindrop Inc.",
-		value: 3421,
-		performance: "0.5%",
-		deltaType: "moderateDecrease",
-	},
-	{
-		name: "Mwatch Group",
-		value: 1432,
-		performance: "3.4%",
-		deltaType: "decrease",
-	},
-];
+type Expenses = Schema["Expenses"]["type"];
 
 export default function SalesItem({
 	expenses,
 	month,
 }: {
-	expenses: Schema["Expenses"][];
+	expenses: Expenses[];
 	month: string;
 }) {
+	console.log(expenses);
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const expenseTotal = expenses.reduce(
-		(acc, expense) => acc + expense.type.expenseAmount,
+		(acc, expense) => acc + expense.expenseAmount,
 		0
 	);
-	const categories = expenses.map((expense) => expense.type.expenseCategory);
+	const categories = expenses.map((expense) => expense.expenseCategory);
+	const uniqueCategoriesSet = new Set(categories);
+	const uniqueCategories = Array.from(uniqueCategoriesSet);
+
+	const groupedAndSummedExpenses = Object.values(
+		expenses.reduce((acc, expense) => {
+			const { expenseCategory, expenseAmount } = expense;
+			if (!acc[expenseCategory]) {
+				acc[expenseCategory] = { ...expense, expenseAmount: 0 };
+			}
+			acc[expenseCategory].expenseAmount += expenseAmount;
+			return acc;
+		}, {} as Record<string, (typeof expenses)[0]>)
+	);
+
+	console.log(groupedAndSummedExpenses);
 
 	return (
 		<Card className="max-w-full mx-auto">
@@ -85,15 +70,15 @@ export default function SalesItem({
 				</TabGroup>
 			</Flex>
 			<Text className="mt-8">Expenses Value</Text>
-			<Metric>$ {expenseTotal}</Metric>
+			<Metric>{dataFormatter(expenseTotal)}</Metric>
 			<Divider />
 			<Text className="mt-8">
 				<Bold>Expense Allocation</Bold>
 			</Text>
-			<Text>{categories.length} Categories</Text>
+			<Text>{uniqueCategories.length} Categories</Text>
 			{selectedIndex === 0 ? (
 				<DonutChart
-					data={expenses}
+					data={groupedAndSummedExpenses}
 					valueFormatter={dataFormatter}
 					showAnimation={true}
 					category="expenseAmount"
@@ -110,12 +95,12 @@ export default function SalesItem({
 					</Flex>
 					<List className="mt-4">
 						{expenses.map((expense) => (
-							<ListItem key={expense.type.expenseName}>
-								<Text>{expense.type.expenseName}</Text>
+							<ListItem key={expense.expenseName}>
+								<Text>{expense.expenseName}</Text>
 								<Flex className="space-x-2" justifyContent="end">
 									<Text>
 										{/* $ {Intl.NumberFormat("us").format(stock.value).toString()} */}
-										{expense.type.expenseAmount}
+										{expense.expenseAmount}
 									</Text>
 								</Flex>
 							</ListItem>

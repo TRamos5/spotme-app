@@ -5,15 +5,20 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export async function createExpense(formData: FormData) {
-	const { data } = await cookiesClient.models.Expenses.create({
-		expenseName: formData.get("expenseName") as string,
-		expenseAmount: parseFloat(formData.get("expenseAmount") as string),
-		expenseCategory: formData.get("expenseCategory") as string,
-		month: formData.get("month") as string,
-		year: formData.get("year") as string,
-	});
-	console.log("Created expense", data);
-	revalidatePath("/dashboard");
+	try {
+		const { data } = await cookiesClient.models.Expenses.create({
+			expenseName: formData.get("expenseName") as string,
+			expenseAmount: parseFloat(formData.get("expenseAmount") as string),
+			expenseCategory: formData.get("expenseCategory") as string,
+			month: formData.get("month") as string,
+			year: "2024",
+		});
+		console.log("Created expense", data);
+		revalidatePath("/dashboard");
+	} catch (error) {
+		console.error("Error creating expense", error);
+		redirect("/login");
+	}
 }
 
 export async function createSavingStrategy(formData: FormData) {

@@ -10,11 +10,12 @@ import {
 
 export default async function App() {
 	const user = await AuthGetCurrentUserAttributesServer();
-	// const expenses = await cookiesClient.models.Expenses.list();
-	// const savingStrategy = await cookiesClient.models.SavingStrategy.list();
-	// const amountSaved = await cookiesClient.models.AmountSaved.list();
-
-	// console.log(expenses);
+	const { data: expenses, errors: expensesErrors } =
+		await cookiesClient.models.Expenses.list();
+	const { data: savingStrategy, errors: savingStrategyErrors } =
+		await cookiesClient.models.SavingStrategy.list();
+	const { data: amountSaved, errors: amountSavedErros } =
+		await cookiesClient.models.AmountSaved.list();
 
 	return (
 		<main className="flex">
@@ -23,10 +24,14 @@ export default async function App() {
 				<Navbar username={user?.preferred_username || ""} />
 				<div className="grid md:grid-cols-3 grid-cols-1 w-full">
 					<div className="col-span-2">
-						<LeftColumn />
+						<LeftColumn
+							savingStrategy={savingStrategy}
+							expenses={expenses}
+							amountSaved={amountSaved}
+						/>
 					</div>
 					<div className="w-full">
-						<RightColumn />
+						<RightColumn expenses={expenses} />
 					</div>
 				</div>
 			</div>

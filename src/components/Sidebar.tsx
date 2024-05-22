@@ -15,17 +15,27 @@ export default function Sidebar() {
 	return (
 		<div className="bg-slate-800 flex-none w-14 sm:w-20 h-screen">
 			<div className="h-20 items-center flex">
-				<HomeIcon width={40} className="text-gray-300 left-3 sm:left-6 fixed" />
+				<a href="/">
+					<HomeIcon
+						width={40}
+						className="text-gray-300 left-3 sm:left-6 fixed"
+					/>
+				</a>
 			</div>
 			<div className="fixed left-3 sm:left-6 top-[100px]">
-				<ChartBarIcon
-					width={40}
-					className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
-				/>
-				<CreditCardIcon
-					width={40}
-					className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
-				/>
+				<a href="/dashboard">
+					<ChartBarIcon
+						width={40}
+						className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
+					/>
+				</a>
+				<a href="/dashboard/add-expense">
+					<CreditCardIcon
+						width={40}
+						className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
+					/>
+				</a>
+
 				{/* <ClipboardDocumentListIcon
 					width={40}
 					className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
