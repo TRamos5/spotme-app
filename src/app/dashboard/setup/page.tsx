@@ -2,11 +2,11 @@
 
 import { Flex, Label, Input } from "@aws-amplify/ui-react";
 import { createSavingStrategy } from "@/src/app/_actions/actions";
-// import Button from "@/src/components/SubmitButton";
 import { Button } from "@aws-amplify/ui-react";
 import { updateUserAttributes, fetchUserAttributes } from "aws-amplify/auth";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import "../../app.css";
 
 export default function Setup() {
 	const router = useRouter();

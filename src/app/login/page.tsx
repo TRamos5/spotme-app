@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import { signUp, SignUpInput } from "aws-amplify/auth";
 import "@aws-amplify/ui-react/styles.css";
+import "../../app/app.css";
 
 function CustomAuthenticator() {
 	const { user } = useAuthenticator((context) => [context.user]);

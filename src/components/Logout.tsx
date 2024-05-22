@@ -4,12 +4,14 @@
 
 import { signOut } from "aws-amplify/auth";
 import { useRouter } from "next/navigation";
+import { Button } from "@aws-amplify/ui-react";
 
 export default function Logout() {
 	const router = useRouter();
 
 	return (
-		<button
+		<Button
+			variation="primary"
 			onClick={async () => {
 				await signOut();
 				router.push("/login");
@@ -17,6 +19,6 @@ export default function Logout() {
 			className="px-2 bg-white text-black"
 		>
 			Sign out
-		</button>
+		</Button>
 	);
 }

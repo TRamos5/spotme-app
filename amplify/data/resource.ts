@@ -3,17 +3,26 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 const schema = a.schema({
 	SavingStrategy: a
 		.model({
-			savingsModel: a.string(),
-			monthlyIncome: a.float(),
-			amountToSave: a.float(),
+			savingsModel: a.string().required(),
+			monthlyIncome: a.float().required(),
+			amountToSave: a.float().required(),
+			yearlyIncome: a.float().required(),
 		})
 		.authorization((allow) => [allow.owner()]),
 	Expenses: a
 		.model({
-			expenseName: a.string(),
-			expenseAmount: a.float(),
-			month: a.string(),
-			year: a.string(),
+			expenseName: a.string().required(),
+			expenseAmount: a.float().required(),
+			expenseCategory: a.string().required(),
+			month: a.string().required(),
+			year: a.string().required(),
+		})
+		.authorization((allow) => [allow.owner()]),
+	AmountSaved: a
+		.model({
+			amountSaved: a.float().required(),
+			month: a.string().required(),
+			year: a.string().required(),
 		})
 		.authorization((allow) => [allow.owner()]),
 });

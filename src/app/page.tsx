@@ -8,7 +8,7 @@ export default function App() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	return (
-		<main className="bg-white">
+		<main>
 			<header className="absolute inset-x-0 top-0 z-50">
 				<nav
 					className="flex items-center justify-between p-6 lg:px-8"
@@ -16,7 +16,7 @@ export default function App() {
 				>
 					<div className="flex lg:flex-1">
 						<a href="#" className="-m-1.5 p-1.5">
-							<span className="text-2xl font-extrabold tracking-wide">
+							<span className="text-2xl font-extrabold tracking-wide text-white">
 								spot me.
 							</span>
 						</a>
@@ -34,7 +34,7 @@ export default function App() {
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 						<a
 							href="/dashboard"
-							className="text-md font-semibold leading-6 text-gray-900"
+							className="text-md font-semibold leading-6 text-gray-300"
 						>
 							Log in <span aria-hidden="true">&rarr;</span>
 						</a>
@@ -55,7 +55,7 @@ export default function App() {
 							</a>
 							<button
 								type="button"
-								className="-m-2.5 rounded-md p-2.5 text-gray-700"
+								className="-m-2.5 rounded-md p-2.5 text-gray-200"
 								onClick={() => setMobileMenuOpen(false)}
 							>
 								<span className="sr-only">Close menu</span>
@@ -67,7 +67,7 @@ export default function App() {
 								<div className="py-6">
 									<a
 										href="/dashboard"
-										className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+										className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
 									>
 										Log in
 									</a>
@@ -93,15 +93,15 @@ export default function App() {
 				</div>
 				<div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
 					<div className="hidden sm:mb-8 sm:flex sm:justify-center">
-						<div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+						<div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-100 ring-1 ring-gray-100/10 hover:ring-gray-100/20">
 							Where you go to manage your money.
 						</div>
 					</div>
 					<div className="text-center">
-						<h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+						<h1 className="text-4xl font-bold tracking-tight text-gray-50 sm:text-6xl">
 							Personal Finance Tracking Made Easy
 						</h1>
-						<p className="mt-6 text-lg leading-8 text-gray-600">
+						<p className="mt-6 text-lg leading-8 text-gray-100">
 							Budgeting and tracking your expenses has never been easier. With
 							Spot Me, you can easily manage your finances and get a clear view
 							of your spending habits.
