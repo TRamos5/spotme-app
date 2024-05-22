@@ -8,6 +8,7 @@ export async function createExpense(formData: FormData) {
 	const { data } = await cookiesClient.models.Expenses.create({
 		expenseName: formData.get("expenseName") as string,
 		expenseAmount: parseFloat(formData.get("expenseAmount") as string),
+		expenseCategory: formData.get("expenseCategory") as string,
 		month: formData.get("month") as string,
 		year: formData.get("year") as string,
 	});
@@ -36,6 +37,7 @@ export async function createSavingStrategy(formData: FormData) {
 			savingsModel: savingModel,
 			monthlyIncome: parseFloat(formData.get("monthlyIncome") as string),
 			amountToSave: monthlyIncome * savingPercentage,
+			yearlyIncome: monthlyIncome * 12,
 		});
 
 		console.log("Created saving strategy", data);
