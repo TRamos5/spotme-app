@@ -69,7 +69,7 @@ export default function SalesItem({
 					</TabList>
 				</TabGroup>
 			</Flex>
-			<Text className="mt-8">Expenses Value</Text>
+			<Text className="mt-8">Total Expenses Value for 2024</Text>
 			<Metric>{dataFormatter(expenseTotal)}</Metric>
 			<Divider />
 			<Text className="mt-8">

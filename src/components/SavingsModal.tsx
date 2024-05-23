@@ -1,12 +1,11 @@
 "use client";
 
-import { Flex, Label, Input, SelectField } from "@aws-amplify/ui-react";
+import { Flex, Label, Input, SelectField, Button } from "@aws-amplify/ui-react";
 import { createAmountSaved } from "@/src/app/_actions/actions";
-import { Button } from "@aws-amplify/ui-react";
-import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import "@aws-amplify/ui-react/styles.css";
 import { useFormStatus } from "react-dom";
+import { XMarkIcon } from "@heroicons/react/16/solid";
 
 function Submit() {
 	const { pending } = useFormStatus();
@@ -60,23 +59,29 @@ function Form({ action }: { action: (formData: FormData) => void }) {
 	);
 }
 
-export default function Setup() {
-	const router = useRouter();
+export default function SavingsModal({
+	isOpen,
+	onClose,
+}: {
+	isOpen: boolean;
+	onClose: () => void;
+}) {
+	if (!isOpen) return null;
 
 	return (
-		<div className="flex flex-col justify-center h-screen w-screen items-center">
+		<div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-10">
 			<div className="bg-white p-16 rounded-md">
 				<div className="flex items-center justify-between gap-12 mb-4">
 					<h1 className="text-xl font-bold">
 						Let's add how much you've saved!
 					</h1>
-					<Button
-						variation="link"
-						colorTheme="overlay"
-						onClick={() => router.replace("/dashboard")}
+					<XMarkIcon
+						width={30}
+						className="text-gray-500 cursor-pointer"
+						onClick={onClose}
 					>
-						Back to dashboard
-					</Button>
+						Close
+					</XMarkIcon>
 				</div>
 				<Form action={createAmountSaved} />
 			</div>

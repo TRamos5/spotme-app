@@ -7,7 +7,7 @@ import {
 	AuthGetCurrentUserAttributesServer,
 	cookiesClient,
 } from "@/src/utils/amplify-utils";
-import { months } from "@/src/utils/utils";
+import { months, getCurrentMonth } from "@/src/utils/utils";
 
 export default async function App() {
 	const user = await AuthGetCurrentUserAttributesServer();
@@ -25,6 +25,11 @@ export default async function App() {
 		return monthIndexA - monthIndexB;
 	});
 
+	const currentMonth = getCurrentMonth();
+	const filteredExpenses = expenses.filter((expense) => {
+		return expense.month === currentMonth;
+	});
+
 	return (
 		<main className="flex">
 			<Sidebar />
@@ -34,7 +39,7 @@ export default async function App() {
 					<div className="col-span-2">
 						<LeftColumn
 							savingStrategy={savingStrategy}
-							expenses={expenses}
+							expenses={filteredExpenses}
 							amountSaved={amountSaved}
 						/>
 					</div>
