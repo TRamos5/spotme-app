@@ -1,7 +1,7 @@
 "use client";
 
 import { Flex, Label, Input, SelectField } from "@aws-amplify/ui-react";
-import { createExpense } from "@/src/app/_actions/actions";
+import { createAmountSaved } from "@/src/app/_actions/actions";
 import { Button } from "@aws-amplify/ui-react";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
@@ -30,37 +30,14 @@ function Form({ action }: { action: (formData: FormData) => void }) {
 		>
 			<Flex direction="column" gap="2rem">
 				<Flex direction="column" gap="small">
-					<Label htmlFor="expenseName">What was the expense?</Label>
-					<Input required id="expenseName" type="string" name="expenseName" />
-				</Flex>
-				<Flex direction="column" gap="small">
-					<Label htmlFor="expenseAmount">How much was it?</Label>
-					<Input
-						required
-						id="expenseAmount"
-						type="string"
-						name="expenseAmount"
-					/>
-				</Flex>
-				<Flex direction="column" gap="small">
-					<SelectField
-						id="expenseCategory"
-						name="expenseCategory"
-						label="What category does it full under?"
-						options={[
-							"Food & Drink",
-							"Retail",
-							"Electronics",
-							"Subscription",
-							"Other",
-						]}
-					></SelectField>
+					<Label htmlFor="amountSaved">How much did you save?</Label>
+					<Input required id="amountSaved" type="string" name="amountSaved" />
 				</Flex>
 				<Flex direction="column" gap="small">
 					<SelectField
 						id="month"
 						name="month"
-						label="What month did it occur?"
+						label="What month did you save this in?"
 						options={[
 							"January",
 							"February",
@@ -90,7 +67,9 @@ export default function Setup() {
 		<div className="flex flex-col justify-center h-screen w-screen items-center">
 			<div className="bg-white p-16 rounded-md">
 				<div className="flex items-center justify-between gap-12 mb-4">
-					<h1 className="text-xl font-bold">Let's add your expenses!</h1>
+					<h1 className="text-xl font-bold">
+						Let's add how much you've saved!
+					</h1>
 					<Button
 						variation="link"
 						colorTheme="overlay"
@@ -99,7 +78,7 @@ export default function Setup() {
 						Back to dashboard
 					</Button>
 				</div>
-				<Form action={createExpense} />
+				<Form action={createAmountSaved} />
 			</div>
 		</div>
 	);

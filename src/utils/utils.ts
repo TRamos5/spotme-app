@@ -2,22 +2,22 @@ export const dataFormatter = (number: number) => {
 	return "$ " + Intl.NumberFormat("us").format(number).toString();
 };
 
-export const getCurrentMonth = () => {
-	const month = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	];
+export const months = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];
 
+export const getCurrentMonth = () => {
 	const d = new Date();
-	return month[d.getMonth()];
+	return months[d.getMonth()];
 };

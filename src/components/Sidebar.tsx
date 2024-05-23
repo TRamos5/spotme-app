@@ -9,6 +9,7 @@ import {
 	EnvelopeIcon,
 	ArrowUpIcon,
 	LinkIcon,
+	BanknotesIcon,
 } from "@heroicons/react/16/solid";
 
 export default function Sidebar() {
@@ -35,12 +36,13 @@ export default function Sidebar() {
 						className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
 					/>
 				</a>
-
-				{/* <ClipboardDocumentListIcon
-					width={40}
-					className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
-				/>
-				<EnvelopeIcon
+				<a href="/dashboard/add-savings">
+					<BanknotesIcon
+						width={40}
+						className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
+					/>
+				</a>
+				{/*<EnvelopeIcon
 					width={40}
 					className="bg-gray-600 p-2 rounded-lg mb-4 text-gray-300 "
 				/>

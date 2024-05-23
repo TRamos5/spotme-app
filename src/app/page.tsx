@@ -1,8 +1,8 @@
 "use client";
 
-import "./app.css";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
+import { XMarkIcon, Bars3Icon } from "@heroicons/react/16/solid";
 
 export default function App() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function App() {
 							onClick={() => setMobileMenuOpen(true)}
 						>
 							<span className="sr-only">Open main menu</span>
-							{/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
+							<Bars3Icon className="h-6 w-6 fill-white" aria-hidden="true" />
 						</button>
 					</div>
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -59,7 +59,7 @@ export default function App() {
 								onClick={() => setMobileMenuOpen(false)}
 							>
 								<span className="sr-only">Close menu</span>
-								{/* <XMarkIcon className="h-6 w-6" aria-hidden="true" /> */}
+								<XMarkIcon className="h-6 w-6 fill-black" aria-hidden="true" />
 							</button>
 						</div>
 						<div className="mt-6 flow-root">

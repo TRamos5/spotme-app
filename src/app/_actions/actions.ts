@@ -21,6 +21,21 @@ export async function createExpense(formData: FormData) {
 	}
 }
 
+export async function createAmountSaved(formData: FormData) {
+	try {
+		const { data } = await cookiesClient.models.AmountSaved.create({
+			amountSaved: parseFloat(formData.get("amountSaved") as string),
+			month: formData.get("month") as string,
+			year: "2024",
+		});
+		console.log("Created amount saved", data);
+		revalidatePath("/dashboard");
+	} catch (error) {
+		console.error("Error creating amount saved", error);
+		redirect("/login");
+	}
+}
+
 export async function createSavingStrategy(formData: FormData) {
 	try {
 		let savingPercentage;
@@ -28,11 +43,17 @@ export async function createSavingStrategy(formData: FormData) {
 		const monthlyIncome = parseFloat(formData.get("monthlyIncome") as string);
 
 		switch (savingModel) {
-			case "FIRE":
-				savingPercentage = 0.25;
+			case "50% - Aggressive":
+				savingPercentage = 0.5;
 				break;
-			case "30/60":
+			case "30% - Moderate":
 				savingPercentage = 0.3;
+				break;
+			case "20% - Conservative":
+				savingPercentage = 0.2;
+				break;
+			case "10% - Essential":
+				savingPercentage = 0.1;
 				break;
 			default:
 				throw "Invalid saving model";

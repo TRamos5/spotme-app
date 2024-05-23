@@ -10,7 +10,6 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import { signUp, SignUpInput } from "aws-amplify/auth";
 import "@aws-amplify/ui-react/styles.css";
-import "../../app/app.css";
 
 function CustomAuthenticator() {
 	const { user } = useAuthenticator((context) => [context.user]);
@@ -39,10 +38,12 @@ function CustomAuthenticator() {
 	}, [user]);
 
 	return (
-		<Authenticator
-			services={services}
-			signUpAttributes={["preferred_username"]}
-		/>
+		<div className="h-screen w-screen flex justify-center">
+			<Authenticator
+				services={services}
+				signUpAttributes={["preferred_username"]}
+			/>
+		</div>
 	);
 }
 

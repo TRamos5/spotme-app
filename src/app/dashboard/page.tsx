@@ -7,6 +7,7 @@ import {
 	AuthGetCurrentUserAttributesServer,
 	cookiesClient,
 } from "@/src/utils/amplify-utils";
+import { months } from "@/src/utils/utils";
 
 export default async function App() {
 	const user = await AuthGetCurrentUserAttributesServer();
@@ -16,6 +17,13 @@ export default async function App() {
 		await cookiesClient.models.SavingStrategy.list();
 	const { data: amountSaved, errors: amountSavedErros } =
 		await cookiesClient.models.AmountSaved.list();
+
+	// Sort the amountSaved by month
+	amountSaved.sort((a, b) => {
+		const monthIndexA = months.indexOf(a.month);
+		const monthIndexB = months.indexOf(b.month);
+		return monthIndexA - monthIndexB;
+	});
 
 	return (
 		<main className="flex">

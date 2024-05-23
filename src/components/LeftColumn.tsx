@@ -30,7 +30,7 @@ export default function LeftColumn({
 					amount={dataFormatter(strategy.monthlyIncome)}
 				/>
 				<CardItem
-					name={"Amount To Save"}
+					name={"Amount To Save Each Month"}
 					amount={dataFormatter(strategy.amountToSave)}
 				/>
 			</div>
